@@ -72,6 +72,8 @@ The renderer expands the export's Vite tenant-directory glob from the same JSON
 files and resolves `#lib` to `src/lib`. It includes the components' CSS and
 computes the signature stamp. Its HTML is a read-only snapshot, not an
 interactive booking application; `/kb/...` links retain the KB's site routes.
+`npm test` also rebuilds the pages before checking them, so formatting changes
+cannot silently break regeneration while leaving old HTML tests green.
 
 The original export has no application configuration or production booking
 code. The added tooling only renders the new pages; it does not reconstruct or

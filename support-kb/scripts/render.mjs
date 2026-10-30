@@ -1,6 +1,7 @@
 import { build } from "esbuild";
 import { compile as compileMarkdown } from "mdsvex";
 import { compile as compileSvelte } from "svelte/compiler";
+import { format } from "prettier";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, extname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -55,7 +56,7 @@ for (const page of pages) {
               const contents = await readFile(args.path, "utf8");
               // Expand Vite's tenant glob from the same files for this static render.
               const glob =
-                /import\.meta\.glob<Tenant>\('\/src\/lib\/data\/tenants\/\*\.json', \{ eager: true, import: 'default' \}\)/;
+                /import\.meta\.glob<Tenant>\(\s*['"]\/src\/lib\/data\/tenants\/\*\.json['"]\s*,\s*\{\s*eager:\s*true,\s*import:\s*['"]default['"],?\s*\},?\s*\)/;
               if (!glob.test(contents)) {
                 throw new Error(
                   "Tenant glob changed; update the static renderer.",
@@ -117,11 +118,14 @@ for (const page of pages) {
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 ${rendered.head}
-<style>${[...styles.values()].join("\n")}</style></head>
+<style>${[...styles.keys()]
+    .sort()
+    .map((path) => styles.get(path))
+    .join("\n")}</style></head>
 <body>${rendered.body}</body>
 </html>
 `;
   await mkdir(dirname(destination), { recursive: true });
-  await writeFile(destination, html);
+  await writeFile(destination, await format(html, { parser: "html" }));
   console.log(`Rendered ${relative(root, destination)}`);
 }

@@ -6,7 +6,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "test": "node --test tests/kb.test.mjs",
+    "test": "npm run render && node --test tests/kb.test.mjs",
     "render": "node scripts/render.mjs",
     "format": "prettier --write package.json scripts/*.mjs tests/*.mjs README.md"
   },

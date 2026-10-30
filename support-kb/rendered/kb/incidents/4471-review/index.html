@@ -9,6 +9,68 @@
       #4471 review: separate causes, not duplicate subjects · support kb
     </title>
     <style>
+      aside.svelte-17bri61 {
+        border-left: 4px solid var(--accent);
+        padding: 0.5rem 1rem;
+        margin: 1rem 0;
+        background: var(--note-bg);
+      }
+      aside.warn.svelte-17bri61 {
+        border-color: var(--warn);
+        background: var(--warn-bg);
+      }
+
+      .sum.svelte-12oyimm {
+        font-size: 1.1rem;
+      }
+      .tags.svelte-12oyimm {
+        color: var(--muted);
+        font-size: 0.85em;
+      }
+      .note.svelte-12oyimm {
+        color: var(--muted);
+        font-size: 0.85em;
+      }
+      .wrong.svelte-12oyimm td:where(.svelte-12oyimm) {
+        background: var(--warn-bg);
+      }
+      .wrong.svelte-12oyimm td:where(.svelte-12oyimm):last-child {
+        color: var(--warn);
+        font-weight: 600;
+      }
+
+      svg.svelte-18a6qal {
+        width: 100%;
+        max-width: 640px;
+      }
+      .in.svelte-18a6qal {
+        fill: var(--warn);
+      }
+      .merged.svelte-18a6qal {
+        fill: var(--accent);
+      }
+      text.svelte-18a6qal {
+        font: 8px var(--mono);
+        fill: var(--muted);
+        text-anchor: middle;
+      }
+      figcaption.svelte-18a6qal {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      .key.svelte-18a6qal {
+        display: inline-block;
+        width: 0.7em;
+        height: 0.7em;
+        border-radius: 2px;
+      }
+      .key.in.svelte-18a6qal {
+        background: var(--warn);
+      }
+      .key.merged.svelte-18a6qal {
+        background: var(--accent);
+      }
+
       .stamp.svelte-1280m42 {
         margin: 2rem 0 0;
         font: 0.85rem var(--mono);
@@ -20,17 +82,6 @@
       }
       .missing.svelte-1280m42 {
         color: var(--warn);
-      }
-
-      aside.svelte-17bri61 {
-        border-left: 4px solid var(--accent);
-        padding: 0.5rem 1rem;
-        margin: 1rem 0;
-        background: var(--note-bg);
-      }
-      aside.warn.svelte-17bri61 {
-        border-color: var(--warn);
-        background: var(--warn-bg);
       }
 
       :root {
@@ -126,57 +177,6 @@
         font-size: 0.8rem;
         border-top: 1px solid var(--line);
         padding-top: 1rem;
-      }
-
-      .sum.svelte-12oyimm {
-        font-size: 1.1rem;
-      }
-      .tags.svelte-12oyimm {
-        color: var(--muted);
-        font-size: 0.85em;
-      }
-      .note.svelte-12oyimm {
-        color: var(--muted);
-        font-size: 0.85em;
-      }
-      .wrong.svelte-12oyimm td:where(.svelte-12oyimm) {
-        background: var(--warn-bg);
-      }
-      .wrong.svelte-12oyimm td:where(.svelte-12oyimm):last-child {
-        color: var(--warn);
-        font-weight: 600;
-      }
-
-      svg.svelte-18a6qal {
-        width: 100%;
-        max-width: 640px;
-      }
-      .in.svelte-18a6qal {
-        fill: var(--warn);
-      }
-      .merged.svelte-18a6qal {
-        fill: var(--accent);
-      }
-      text.svelte-18a6qal {
-        font: 8px var(--mono);
-        fill: var(--muted);
-        text-anchor: middle;
-      }
-      figcaption.svelte-18a6qal {
-        color: var(--muted);
-        font-size: 0.85rem;
-      }
-      .key.svelte-18a6qal {
-        display: inline-block;
-        width: 0.7em;
-        height: 0.7em;
-        border-radius: 2px;
-      }
-      .key.in.svelte-18a6qal {
-        background: var(--warn);
-      }
-      .key.merged.svelte-18a6qal {
-        background: var(--accent);
       }
     </style>
   </head>
