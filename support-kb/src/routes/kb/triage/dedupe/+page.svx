@@ -1,0 +1,55 @@
+---
+layout: runbook
+title: 'Triage: duplicate reports'
+owner: support desk
+status: accepted
+reviewed: 2026-10-30
+---
+
+<script>
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+Keep one ticket per evidenced cause, with an engineering owner and a count of
+unique report IDs. A busy queue can contain different defects described in
+similar words. Do not collapse them merely to shorten the queue.
+
+## The rule
+
+A report is a duplicate only when its evidence supports the same cause and
+compatible product and affected path, following
+[decision 0002](/kb/decisions/0002-dedupe-by-cause). This replaces the subject-only
+rule in the unchanged historical [decision 0001](/kb/decisions/0001-dedupe-by-subject).
+
+1. Retain the report ID, body, tenant, channel, and receipt time. Deduplicate
+   overlapping export rows by ID.
+2. Resolve the tenant's locale and booking-form version. For the date incident,
+   use `causeOf` and `sameCause` in `src/lib/kb/causes.ts`, not browser locale or
+   intake tags. Check the body against that classification.
+3. If the cause and affected context agree, link to that cause's ticket. If they
+   differ, keep separate tickets. If evidence is missing or contradictory, keep
+   the report unplaced for investigation.
+4. Preserve an audit trail when reclassifying. Count each report once and
+   distinguish when it arrived from when the desk merged it.
+
+<Callout>
+Matching subjects are not evidence of a shared cause. The
+[review of #4471](/kb/incidents/4471-review) links separate engineering issues and
+records unexplained timing reports. Neither "known" nor "fix queued" proves a
+production resolution.
+</Callout>
+
+## Try it
+
+<DedupeExplorer />
+
+## When you are unsure
+
+Do not force a merge. Ask for the missing tenant, product, form version, or
+reproduction, and retain contradictions for engineering. Continue routing
+well-supported incoming reports while uncertain ones are investigated.
+
+Confirm product scope before any broad remediation: this desk also serves
+`sched-prod` and other products. Do not bulk-change live tickets or customer
+invitations on the strength of an exported snapshot.

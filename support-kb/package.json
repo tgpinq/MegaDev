@@ -1,0 +1,19 @@
+{
+  "name": "s01e03-support-kb",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test tests/kb.test.mjs",
+    "render": "node scripts/render.mjs",
+    "format": "prettier --write package.json scripts/*.mjs tests/*.mjs README.md"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "mdsvex": "^0.12.0",
+    "prettier": "^3.0.0",
+    "svelte": "^5.0.0"
+  }
+}

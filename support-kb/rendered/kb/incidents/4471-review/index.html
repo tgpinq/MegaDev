@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--e2jw2j-->
+    <!---->
+    <title>
+      #4471 review: separate causes, not duplicate subjects · support kb
+    </title>
+    <style>
+      .stamp.svelte-1280m42 {
+        margin: 2rem 0 0;
+        font: 0.85rem var(--mono);
+        color: var(--muted);
+      }
+      .stamp.svelte-1280m42 b:where(.svelte-1280m42) {
+        color: var(--accent);
+        letter-spacing: 0.04em;
+      }
+      .missing.svelte-1280m42 {
+        color: var(--warn);
+      }
+
+      aside.svelte-17bri61 {
+        border-left: 4px solid var(--accent);
+        padding: 0.5rem 1rem;
+        margin: 1rem 0;
+        background: var(--note-bg);
+      }
+      aside.warn.svelte-17bri61 {
+        border-color: var(--warn);
+        background: var(--warn-bg);
+      }
+
+      :root {
+        --bg: #fbfaf7;
+        --fg: #1d1d1b;
+        --muted: #6b6a66;
+        --line: #e3e0d8;
+        --accent: #2f6f5e;
+        --warn: #b4501f;
+        --warn-bg: #fbeee6;
+        --note-bg: #eef5f2;
+        --mono: ui-monospace, "Cascadia Code", Menlo, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #171716;
+          --fg: #ecebe6;
+          --muted: #9c9a93;
+          --line: #34332f;
+          --accent: #6fbfa6;
+          --warn: #f0905d;
+          --warn-bg: #3a2418;
+          --note-bg: #1d2c27;
+        }
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          16px/1.6 system-ui,
+          sans-serif;
+      }
+      .kb table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 1rem 0;
+        font-size: 0.92rem;
+      }
+      .kb th,
+      .kb td {
+        border-bottom: 1px solid var(--line);
+        padding: 0.35rem 0.5rem;
+        text-align: left;
+      }
+      .kb code {
+        font-family: var(--mono);
+        font-size: 0.88em;
+      }
+      .kb a {
+        color: var(--accent);
+      }
+      .kb.svelte-e2jw2j {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 2rem 16px 4rem;
+      }
+      .crumb.svelte-e2jw2j {
+        font: 0.8rem var(--mono);
+        text-decoration: none;
+        color: var(--muted);
+      }
+      h1.svelte-e2jw2j {
+        margin: 0.25rem 0 0.5rem;
+        line-height: 1.2;
+      }
+      .meta.svelte-e2jw2j {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin: 0;
+      }
+      .status.svelte-e2jw2j {
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        padding: 0 0.6rem;
+      }
+      .stale.svelte-e2jw2j {
+        color: var(--warn);
+        font-weight: 600;
+      }
+      .banner.svelte-e2jw2j {
+        background: var(--warn-bg);
+        color: var(--warn);
+        padding: 0.6rem 1rem;
+        border-radius: 6px;
+      }
+      footer.svelte-e2jw2j {
+        margin-top: 3rem;
+        color: var(--muted);
+        font-size: 0.8rem;
+        border-top: 1px solid var(--line);
+        padding-top: 1rem;
+      }
+
+      .sum.svelte-12oyimm {
+        font-size: 1.1rem;
+      }
+      .tags.svelte-12oyimm {
+        color: var(--muted);
+        font-size: 0.85em;
+      }
+      .note.svelte-12oyimm {
+        color: var(--muted);
+        font-size: 0.85em;
+      }
+      .wrong.svelte-12oyimm td:where(.svelte-12oyimm) {
+        background: var(--warn-bg);
+      }
+      .wrong.svelte-12oyimm td:where(.svelte-12oyimm):last-child {
+        color: var(--warn);
+        font-weight: 600;
+      }
+
+      svg.svelte-18a6qal {
+        width: 100%;
+        max-width: 640px;
+      }
+      .in.svelte-18a6qal {
+        fill: var(--warn);
+      }
+      .merged.svelte-18a6qal {
+        fill: var(--accent);
+      }
+      text.svelte-18a6qal {
+        font: 8px var(--mono);
+        fill: var(--muted);
+        text-anchor: middle;
+      }
+      figcaption.svelte-18a6qal {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      .key.svelte-18a6qal {
+        display: inline-block;
+        width: 0.7em;
+        height: 0.7em;
+        border-radius: 2px;
+      }
+      .key.in.svelte-18a6qal {
+        background: var(--warn);
+      }
+      .key.merged.svelte-18a6qal {
+        background: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <!--[-->
+    <div class="kb svelte-e2jw2j">
+      <header>
+        <a class="crumb svelte-e2jw2j" href="/kb">support desk · kb</a>
+        <h1 class="svelte-e2jw2j">
+          #4471 review: separate causes, not duplicate subjects
+        </h1>
+        <p class="meta svelte-e2jw2j">
+          <span>owner <b>tgpinq</b></span>
+          <span class="status investigated svelte-e2jw2j">investigated</span>
+          <span class="svelte-e2jw2j">reviewed 2026-10-30 · 0 days ago</span>
+        </p>
+      </header>
+      <!--[-1--><!--]-->
+      <main>
+        <p>
+          The <a href="/kb/incidents/4471">original incident</a> merged
+          different defects into a parser ticket. Its “one issue, one fix
+          queued” conclusion is not supported by the export. The table below
+          computes the counts from unique report IDs, tenant locales, form
+          versions, and channels. It does not trust intake’s guessed tags.
+        </p>
+        <p>
+          This review uses the export dated 2026-10-04. The review date is not a
+          claim that we queried the live desk or verified a production fix.
+        </p>
+        <h2>What the evidence supports</h2>
+        <p class="sum svelte-12oyimm">
+          <strong>412</strong> reports merged into #4471 ·
+          <strong>2</strong> causes
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>cause</th>
+              <th>reports</th>
+              <th>tagged as</th>
+              <th>tenants</th>
+              <th>seen</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--[-->
+            <tr class="svelte-12oyimm">
+              <td class="svelte-12oyimm"><code>parser</code></td>
+              <td class="svelte-12oyimm">379</td>
+              <td class="tags svelte-12oyimm">parser ×356 · hint ×23</td>
+              <td class="svelte-12oyimm">11</td>
+              <td class="svelte-12oyimm">2026-04-01 → 2026-10-04</td>
+              <td class="svelte-12oyimm">#4471</td>
+            </tr>
+            <tr class="svelte-12oyimm wrong">
+              <td class="svelte-12oyimm"><code>hint</code></td>
+              <td class="svelte-12oyimm">33</td>
+              <td class="tags svelte-12oyimm">hint ×18 · parser ×15</td>
+              <td class="svelte-12oyimm">3</td>
+              <td class="svelte-12oyimm">2026-04-17 → 2026-09-22</td>
+              <td class="svelte-12oyimm">
+                not this ticket — no ticket of its own
+              </td>
+            </tr>
+            <!--]-->
+          </tbody>
+        </table>
+        <!--[--><!--[0-->
+        <p class="note svelte-12oyimm">
+          5 reports read as a one-day move; filed under <code>parser</code> by
+          tenant.
+        </p>
+        <!--]--><!--[-1--><!--]--><!--]--><!---->
+        <ul>
+          <li>
+            <strong>Parser:</strong> the shared parser reads month first for
+            day-first tenants.
+            <a href="https://github.com/tgpinq/MegaDev/issues/1" rel="nofollow"
+              >Engineering issue</a
+            >.
+          </li>
+          <li>
+            <strong>Hint:</strong> booking-v3 prints <code>MM/DD/YYYY</code>,
+            but the form reads input in the day-first tenant’s order. People can
+            follow the instruction and still book the wrong date.
+            <a href="https://github.com/tgpinq/MegaDev/issues/2" rel="nofollow"
+              >Separate engineering issue</a
+            >.
+          </li>
+        </ul>
+        <p>
+          The issues record snapshot counts, customer evidence, reproduction
+          steps for engineering to verify, proposed changes, and acceptance
+          criteria. The production booking application is not in this export;
+          these are not locally reproduced production fixes.
+        </p>
+        <h3>How to classify a report</h3>
+        <p>
+          Deduplicate overlapping export rows by report ID. Resolve the tenant
+          from <code>src/lib/data/tenants/</code>, use its locale’s date order,
+          then inspect its form version and the report channel. The
+          implementation is <code>causeOf</code> in
+          <code>src/lib/kb/causes.ts</code>.
+        </p>
+        <p>
+          A day-first tenant’s booking-v3 <strong>form</strong> report belongs
+          to hint; its app or email report belongs to parser under the current
+          model. A booking-v2 report from a day-first tenant belongs to parser.
+          An unknown tenant or unsupported case stays unplaced for
+          investigation; do not force it into the closest subject.
+        </p>
+        <p>
+          Browser locale is not tenant locale. <code>meta.intakeTag</code> is an
+          intake guess, not a finding. The table shows where those guesses
+          disagree with classification.
+        </p>
+        <p>
+          For example, R-41230 is a form report from <code>copper.studio</code>,
+          a day-first tenant running booking-v3, even though intake tagged it
+          parser. R-41241 belongs to hint for <code>alder.physio</code>, despite
+          its reporter’s <code>en-US</code> browser.
+        </p>
+        <h3>Keep the exceptions visible</h3>
+        <p>
+          The table’s one-day-move footnote comes from
+          <code>desk-notes.json</code>. Those reports remain counted under
+          parser by the tenant rule; they are not extra reports or proof that a
+          day/month swap explains their bodies.
+        </p>
+        <p>
+          Preserve R-41202, R-41209, R-41236, R-41344, and R-41620 for
+          engineering review. They describe one-day shifts, a cross-timezone
+          discrepancy, or an invitation arriving before a booking. Check
+          date-only handling, timezone conversion, send timing, and event
+          history. Do not invent a proven timezone defect from these reports, or
+          close them merely because the parser is fixed.
+        </p>
+        <h2>What the queue actually shows</h2>
+        <figure>
+          <svg
+            viewBox="0 0 648 140"
+            role="img"
+            aria-label="reports received and merged into #4471, per week"
+            class="svelte-18a6qal"
+          >
+            <!--[-->
+            <rect
+              class="in svelte-18a6qal"
+              x="2"
+              y="106.29629629629629"
+              width="9"
+              height="3.7037037037037033"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="12"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[0-->
+            <text x="12" y="128" class="svelte-18a6qal">03-30</text>
+            <!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="26"
+              y="104.17989417989418"
+              width="9"
+              height="5.82010582010582"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="36"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="50"
+              y="102.5925925925926"
+              width="9"
+              height="7.4074074074074066"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="60"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="74"
+              y="99.94708994708995"
+              width="9"
+              height="10.052910052910052"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="84"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="98"
+              y="101.53439153439153"
+              width="9"
+              height="8.465608465608465"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="108"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[0-->
+            <text x="108" y="128" class="svelte-18a6qal">04-27</text>
+            <!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="122"
+              y="103.65079365079364"
+              width="9"
+              height="6.349206349206349"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="132"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="146"
+              y="105.76719576719577"
+              width="9"
+              height="4.232804232804233"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="156"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="170"
+              y="103.65079365079364"
+              width="9"
+              height="6.349206349206349"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="180"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="194"
+              y="102.5925925925926"
+              width="9"
+              height="7.4074074074074066"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="204"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[0-->
+            <text x="204" y="128" class="svelte-18a6qal">05-25</text>
+            <!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="218"
+              y="101.00529100529101"
+              width="9"
+              height="8.994708994708994"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="228"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="242"
+              y="101.53439153439153"
+              width="9"
+              height="8.465608465608465"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="252"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="266"
+              y="101.00529100529101"
+              width="9"
+              height="8.994708994708994"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="276"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="290"
+              y="104.17989417989418"
+              width="9"
+              height="5.82010582010582"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="300"
+              y="110"
+              width="9"
+              height="0"
+            ></rect>
+            <!--[0-->
+            <text x="300" y="128" class="svelte-18a6qal">06-22</text>
+            <!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="314"
+              y="102.06349206349206"
+              width="9"
+              height="7.936507936507936"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="324"
+              y="10"
+              width="9"
+              height="100"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="338"
+              y="99.94708994708995"
+              width="9"
+              height="10.052910052910052"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="348"
+              y="100.47619047619048"
+              width="9"
+              height="9.523809523809524"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="362"
+              y="101.00529100529101"
+              width="9"
+              height="8.994708994708994"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="372"
+              y="100.47619047619048"
+              width="9"
+              height="9.523809523809524"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="386"
+              y="102.06349206349206"
+              width="9"
+              height="7.936507936507936"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="396"
+              y="102.06349206349206"
+              width="9"
+              height="7.936507936507936"
+            ></rect>
+            <!--[0-->
+            <text x="396" y="128" class="svelte-18a6qal">07-20</text>
+            <!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="410"
+              y="99.94708994708995"
+              width="9"
+              height="10.052910052910052"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="420"
+              y="99.94708994708995"
+              width="9"
+              height="10.052910052910052"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="434"
+              y="105.76719576719577"
+              width="9"
+              height="4.232804232804233"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="444"
+              y="105.76719576719577"
+              width="9"
+              height="4.232804232804233"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="458"
+              y="102.06349206349206"
+              width="9"
+              height="7.936507936507936"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="468"
+              y="102.06349206349206"
+              width="9"
+              height="7.936507936507936"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="482"
+              y="99.41798941798942"
+              width="9"
+              height="10.582010582010582"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="492"
+              y="99.41798941798942"
+              width="9"
+              height="10.582010582010582"
+            ></rect>
+            <!--[0-->
+            <text x="492" y="128" class="svelte-18a6qal">08-17</text>
+            <!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="506"
+              y="102.5925925925926"
+              width="9"
+              height="7.4074074074074066"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="516"
+              y="102.5925925925926"
+              width="9"
+              height="7.4074074074074066"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="530"
+              y="98.88888888888889"
+              width="9"
+              height="11.11111111111111"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="540"
+              y="98.88888888888889"
+              width="9"
+              height="11.11111111111111"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="554"
+              y="99.41798941798942"
+              width="9"
+              height="10.582010582010582"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="564"
+              y="99.41798941798942"
+              width="9"
+              height="10.582010582010582"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="578"
+              y="102.06349206349206"
+              width="9"
+              height="7.936507936507936"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="588"
+              y="102.06349206349206"
+              width="9"
+              height="7.936507936507936"
+            ></rect>
+            <!--[0-->
+            <text x="588" y="128" class="svelte-18a6qal">09-14</text>
+            <!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="602"
+              y="96.77248677248677"
+              width="9"
+              height="13.227513227513226"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="612"
+              y="97.83068783068784"
+              width="9"
+              height="12.16931216931217"
+            ></rect>
+            <!--[-1--><!--]-->
+            <rect
+              class="in svelte-18a6qal"
+              x="626"
+              y="102.06349206349206"
+              width="9"
+              height="7.936507936507936"
+            ></rect>
+            <rect
+              class="merged svelte-18a6qal"
+              x="636"
+              y="101.00529100529101"
+              width="9"
+              height="8.994708994708994"
+            ></rect>
+            <!--[-1--><!--]--><!--]-->
+          </svg>
+          <figcaption class="svelte-18a6qal">
+            <span class="key in svelte-18a6qal"></span> received ·
+            <span class="key merged svelte-18a6qal"></span> merged into #4471 ·
+            per week
+          </figcaption>
+        </figure>
+        <!---->
+        <p>
+          Reports were received before the large July merge burst. Receipt time
+          records when the desk heard about a problem; merge time records a
+          filing action, not the onset of an incident. The export continues to
+          show incoming reports after the bulk merge and after the original
+          page’s review. “Known” and “fix queued” do not mean resolved.
+        </p>
+        <h2>Keep the desk working without repeating the merge</h2>
+        <aside class="warn svelte-17bri61">
+          <!---->The desk serves multiple products, including sched-prod, which
+          sends calendar invites for about 300,000 people. This export does not
+          identify a product on each report. Confirm the affected product,
+          release, tenant, and path before applying a broad change or announcing
+          an impact count.<!---->
+        </aside>
+        <!---->
+        <p>
+          Use the
+          <a href="/kb/decisions/0002-dedupe-by-cause">replacement decision</a>
+          and
+          <a href="/kb/triage/dedupe">current triage procedure</a> immediately
+          for this KB’s routing. Do not silently rewrite the accepted historical
+          decision.
+        </p>
+        <ul>
+          <li>
+            Route incoming reports by supported cause, keeping IDs and original
+            evidence. Matching subjects alone no longer authorize a merge.
+          </li>
+          <li>
+            Link the parser and hint issues to the old incident. Reclassify
+            existing reports with an audit trail; never delete reports or count
+            a duplicated export row as another customer report.
+          </li>
+          <li>
+            Have the support lead arrange an engineering owner, priority, and
+            mitigation for each cause. Until verified, record these as
+            unassigned, not “queued” facts.
+          </li>
+          <li>
+            Verify the affected booking paths and offer only a
+            product-owner-approved workaround. Do not change production, resend
+            invitations, or bulk-move the live desk’s tickets from this export.
+          </li>
+          <li>
+            Check new evidence against both issues. Preserve anomalies
+            separately for investigation and revise the model if engineering
+            establishes another cause.
+          </li>
+          <li>
+            Close a cause only after its product fix, regression tests,
+            customer-case verification, and rollout are documented. A
+            documentation correction is not a production fix.
+          </li>
+        </ul>
+        <!--[0-->
+        <p class="stamp svelte-1280m42">
+          desk ref <b class="svelte-1280m42">DR-8JV0-WBPA</b>
+        </p>
+        <!--]--><!----><!---->
+      </main>
+      <footer class="svelte-e2jw2j">
+        Pages are written by people. Tables and charts are built from data at
+        render time.
+      </footer>
+    </div>
+    <!--]-->
+  </body>
+</html>

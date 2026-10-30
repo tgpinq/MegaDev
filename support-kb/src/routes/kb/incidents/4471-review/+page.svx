@@ -1,0 +1,110 @@
+---
+layout: runbook
+title: '#4471 review: separate causes, not duplicate subjects'
+owner: tgpinq
+status: investigated
+reviewed: 2026-10-30
+signature: tgpinq
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+The [original incident](/kb/incidents/4471) merged different defects into a parser
+ticket. Its "one issue, one fix queued" conclusion is not supported by the export.
+The table below computes the counts from unique report IDs, tenant locales, form
+versions, and channels. It does not trust intake's guessed tags.
+
+This review uses the export dated 2026-10-04. The review date is not a claim that we
+queried the live desk or verified a production fix.
+
+## What the evidence supports
+
+<CauseTable ticket={4471} />
+
+- **Parser:** the shared parser reads month first for day-first tenants.
+  [Engineering issue](https://github.com/tgpinq/MegaDev/issues/1).
+- **Hint:** booking-v3 prints `MM/DD/YYYY`, but the form reads input in the
+  day-first tenant's order. People can follow the instruction and still book
+  the wrong date.
+  [Separate engineering issue](https://github.com/tgpinq/MegaDev/issues/2).
+
+The issues record snapshot counts, customer evidence, reproduction steps for
+engineering to verify, proposed changes, and acceptance criteria. The production
+booking application is not in this export; these are not locally reproduced
+production fixes.
+
+### How to classify a report
+
+Deduplicate overlapping export rows by report ID. Resolve the tenant from
+`src/lib/data/tenants/`, use its locale's date order, then inspect its form version
+and the report channel. The implementation is `causeOf` in `src/lib/kb/causes.ts`.
+
+A day-first tenant's booking-v3 **form** report belongs to hint; its app or email
+report belongs to parser under the current model. A booking-v2 report from a
+day-first tenant belongs to parser. An unknown tenant or unsupported case stays
+unplaced for investigation; do not force it into the closest subject.
+
+Browser locale is not tenant locale. `meta.intakeTag` is an intake guess, not a
+finding. The table shows where those guesses disagree with classification.
+
+For example, R-41230 is a form report from `copper.studio`, a day-first tenant
+running booking-v3, even though intake tagged it parser. R-41241 belongs to hint
+for `alder.physio`, despite its reporter's `en-US` browser.
+
+### Keep the exceptions visible
+
+The table's one-day-move footnote comes from `desk-notes.json`. Those reports
+remain counted under parser by the tenant rule; they are not extra reports or
+proof that a day/month swap explains their bodies.
+
+Preserve R-41202, R-41209, R-41236, R-41344, and R-41620 for engineering review.
+They describe one-day shifts, a cross-timezone discrepancy, or an invitation
+arriving before a booking. Check date-only handling, timezone conversion,
+send timing, and event history. Do not invent a proven timezone defect from
+these reports, or close them merely because the parser is fixed.
+
+## What the queue actually shows
+
+<QueueTimeline ticket={4471} />
+
+Reports were received before the large July merge burst. Receipt time records
+when the desk heard about a problem; merge time records a filing action, not the
+onset of an incident. The export continues to show incoming reports after the
+bulk merge and after the original page's review. "Known" and "fix queued" do not
+mean resolved.
+
+## Keep the desk working without repeating the merge
+
+<Callout kind="warn">
+  The desk serves multiple products, including sched-prod, which sends calendar
+  invites for about 300,000 people. This export does not identify a product on
+  each report. Confirm the affected product, release, tenant, and path before
+  applying a broad change or announcing an impact count.
+</Callout>
+
+Use the [replacement decision](/kb/decisions/0002-dedupe-by-cause) and
+[current triage procedure](/kb/triage/dedupe) immediately for this KB's routing.
+Do not silently rewrite the accepted historical decision.
+
+- Route incoming reports by supported cause, keeping IDs and original evidence.
+  Matching subjects alone no longer authorize a merge.
+- Link the parser and hint issues to the old incident. Reclassify existing
+  reports with an audit trail; never delete reports or count a duplicated export
+  row as another customer report.
+- Have the support lead arrange an engineering owner, priority, and mitigation
+  for each cause. Until verified, record these as unassigned, not "queued" facts.
+- Verify the affected booking paths and offer only a product-owner-approved
+  workaround. Do not change production, resend invitations, or bulk-move the
+  live desk's tickets from this export.
+- Check new evidence against both issues. Preserve anomalies separately for
+  investigation and revise the model if engineering establishes another cause.
+- Close a cause only after its product fix, regression tests, customer-case
+  verification, and rollout are documented. A documentation correction is not
+  a production fix.
+
+<RenderStamp {signature} />

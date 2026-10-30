@@ -1,0 +1,66 @@
+---
+layout: runbook
+title: '0002: duplicate reports share an evidenced cause'
+owner: tgpinq
+status: accepted
+reviewed: 2026-10-30
+signature: tgpinq
+---
+
+<script>
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+**Supersedes:** [0001: duplicates share a subject line](/kb/decisions/0001-dedupe-by-subject).
+That accepted record remains unchanged as history. This decision replaces its
+subject-only rule for the KB's current triage procedure.
+
+## Context
+
+The [review of incident #4471](/kb/incidents/4471-review) finds distinct parser and
+date-hint causes in a ticket described as a single known parser bug. Subjects and
+intake tags do not establish which cause a report belongs to. The old decision
+and its triage procedure were last reviewed in June 2024; their accepted status
+does not make their assertions current.
+
+## Decision
+
+Merge reports only when the evidence supports a shared cause and compatible
+affected product and path. First preserve and deduplicate report IDs. For the
+date cases, use the existing `causeOf` and `sameCause` functions: resolve tenant
+locale, tenant form version, and channel. Read the body for contradictions.
+
+Do not substitute browser locale, guessed intake tags, matching subjects, or the
+size of a ticket for that evidence. If tenant or cause is unknown, or the body
+does not fit the model, keep the case for investigation rather than forcing a
+merge. Revisit the model when evidence changes.
+
+## Check the rule
+
+<DedupeExplorer />
+
+- App and email reports for `kettle.books` have the same parser cause despite
+  different subjects.
+- Form and app reports for `alder.physio` can have the same subject but different
+  causes: booking-v3's hint versus the shared parser.
+- Form reports for `copper.studio` and `morrow.tax` can have the same subject and
+  channel but different causes because their form versions differ.
+- Form reports for `pale.harbour` and `alder.physio` share the hint cause despite
+  different subjects.
+- Matching subjects from `unknown.sender` provide no known cause. Keep them
+  unplaced until investigated.
+
+## Consequences
+
+Triage needs tenant lookup and evidence review instead of subject matching
+alone. This costs attention but avoids hiding a second defect under the first
+defect's fix. Retain the original report IDs and ticket links when splitting;
+count each report once.
+
+The desk can keep receiving and routing reports while engineering investigates
+the separate causes. Historical classification is a starting point, not proof
+that every report is fully explained. See the review's explicit anomalies,
+ownership needs, and limits on production actions.
+
+<RenderStamp {signature} />
