@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--e2jw2j-->
+    <!---->
+    <title>
+      0003: confirm cause-based triage with course provenance · support kb
+    </title>
+    <style>
+      .try.svelte-gq0h2h {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.75rem;
+        margin: 1rem 0;
+      }
+      fieldset.svelte-gq0h2h {
+        display: grid;
+        gap: 0.4rem;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+      }
+      .verdict.svelte-gq0h2h {
+        grid-column: 1 / -1;
+        margin: 0;
+        font-weight: 600;
+        color: var(--muted);
+      }
+      .dup.svelte-gq0h2h {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .stamp.svelte-1280m42 {
+        margin: 2rem 0 0;
+        font: 0.85rem var(--mono);
+        color: var(--muted);
+      }
+      .stamp.svelte-1280m42 b:where(.svelte-1280m42) {
+        color: var(--accent);
+        letter-spacing: 0.04em;
+      }
+      .missing.svelte-1280m42 {
+        color: var(--warn);
+      }
+
+      :root {
+        --bg: #fbfaf7;
+        --fg: #1d1d1b;
+        --muted: #6b6a66;
+        --line: #e3e0d8;
+        --accent: #2f6f5e;
+        --warn: #b4501f;
+        --warn-bg: #fbeee6;
+        --note-bg: #eef5f2;
+        --mono: ui-monospace, "Cascadia Code", Menlo, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #171716;
+          --fg: #ecebe6;
+          --muted: #9c9a93;
+          --line: #34332f;
+          --accent: #6fbfa6;
+          --warn: #f0905d;
+          --warn-bg: #3a2418;
+          --note-bg: #1d2c27;
+        }
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          16px/1.6 system-ui,
+          sans-serif;
+      }
+      .kb table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 1rem 0;
+        font-size: 0.92rem;
+      }
+      .kb th,
+      .kb td {
+        border-bottom: 1px solid var(--line);
+        padding: 0.35rem 0.5rem;
+        text-align: left;
+      }
+      .kb code {
+        font-family: var(--mono);
+        font-size: 0.88em;
+      }
+      .kb a {
+        color: var(--accent);
+      }
+      .kb.svelte-e2jw2j {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 2rem 16px 4rem;
+      }
+      .crumb.svelte-e2jw2j {
+        font: 0.8rem var(--mono);
+        text-decoration: none;
+        color: var(--muted);
+      }
+      h1.svelte-e2jw2j {
+        margin: 0.25rem 0 0.5rem;
+        line-height: 1.2;
+      }
+      .meta.svelte-e2jw2j {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin: 0;
+      }
+      .status.svelte-e2jw2j {
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        padding: 0 0.6rem;
+      }
+      .stale.svelte-e2jw2j {
+        color: var(--warn);
+        font-weight: 600;
+      }
+      .banner.svelte-e2jw2j {
+        background: var(--warn-bg);
+        color: var(--warn);
+        padding: 0.6rem 1rem;
+        border-radius: 6px;
+      }
+      footer.svelte-e2jw2j {
+        margin-top: 3rem;
+        color: var(--muted);
+        font-size: 0.8rem;
+        border-top: 1px solid var(--line);
+        padding-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!--[-->
+    <div class="kb svelte-e2jw2j">
+      <header>
+        <a class="crumb svelte-e2jw2j" href="/kb">support desk · kb</a>
+        <h1 class="svelte-e2jw2j">
+          0003: confirm cause-based triage with course provenance
+        </h1>
+        <p class="meta svelte-e2jw2j">
+          <span>owner <b>tgpinq</b></span>
+          <span class="status accepted svelte-e2jw2j">accepted</span>
+          <span class="svelte-e2jw2j">reviewed 2026-10-30 · 0 days ago</span>
+        </p>
+      </header>
+      <!--[-1--><!--]-->
+      <main>
+        <p>
+          <strong>Supersedes:</strong>
+          <a href="/kb/decisions/0002-dedupe-by-cause"
+            >0002: duplicate reports share an evidenced cause</a
+          >. Accepted decisions 0001 and 0002 remain unchanged as history.
+        </p>
+        <h2>Context</h2>
+        <p>
+          Decision 0002 correctly separated causes, but its signature was the
+          author’s GitHub handle. The course requires its issued ticket as the
+          page signature. This replacement records that provenance without
+          editing an accepted decision. The
+          <a href="/kb/incidents/4471-review">incident review</a> now uses the
+          same issued signature; its render-time desk reference follows from
+          that exact value.
+        </p>
+        <h2>Decision</h2>
+        <p>
+          Retain the cause-based rule from decision 0002. Merge only when the
+          evidence supports a shared cause and compatible affected product and
+          path. Deduplicate report IDs, resolve tenant locale and form version,
+          inspect the channel, and read the body for contradictions. Use
+          <code>causeOf</code> and <code>sameCause</code> for the date cases,
+          not subject matching, browser locale, or intake’s guessed tags.
+        </p>
+        <p>
+          Unknown tenants, unsupported cases, and timing anomalies stay visible
+          for investigation rather than being forced into a cause. Preserve
+          report IDs and ticket links when reclassifying. Continue routing
+          supported cases while engineering investigates uncertainty.
+        </p>
+        <div class="try svelte-gq0h2h">
+          <!--[-->
+          <fieldset class="svelte-gq0h2h">
+            <legend>report A</legend>
+            <select aria-label="tenant">
+              <!--[-->
+              <option selected="">alder.physio</option>
+              <option>copper.studio</option>
+              <option>harbour.dental</option>
+              <option>kettle.books</option>
+              <option>lantern.row</option>
+              <option>long.table</option>
+              <option>morrow.tax</option>
+              <option>nine.lanterns</option>
+              <option>pale.harbour</option>
+              <option>ridge.clinic</option>
+              <option>stone.and.sons</option>
+              <!--]-->
+            </select>
+            <select aria-label="channel">
+              <!--[-->
+              <option>app</option>
+              <option>email</option>
+              <option selected="">form</option>
+              <!--]-->
+            </select>
+            <input value="Booking on the wrong date" aria-label="subject" />
+            <code>hint</code>
+          </fieldset>
+          <fieldset class="svelte-gq0h2h">
+            <legend>report B</legend>
+            <select aria-label="tenant">
+              <!--[-->
+              <option>alder.physio</option>
+              <option>copper.studio</option>
+              <option>harbour.dental</option>
+              <option selected="">kettle.books</option>
+              <option>lantern.row</option>
+              <option>long.table</option>
+              <option>morrow.tax</option>
+              <option>nine.lanterns</option>
+              <option>pale.harbour</option>
+              <option>ridge.clinic</option>
+              <option>stone.and.sons</option>
+              <!--]-->
+            </select>
+            <select aria-label="channel">
+              <!--[-->
+              <option>app</option>
+              <option>email</option>
+              <option selected="">form</option>
+              <!--]-->
+            </select>
+            <input value="Booking on the wrong date" aria-label="subject" />
+            <code>parser</code>
+          </fieldset>
+          <!--]-->
+          <p class="verdict svelte-gq0h2h">different causes — keep apart</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>case</th>
+              <th>same subject</th>
+              <th>same cause</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--[-->
+            <tr>
+              <td>app vs email, same tenant</td>
+              <td>no</td>
+              <td class="svelte-gq0h2h dup">yes</td>
+            </tr>
+            <tr>
+              <td>same subject, same tenant, different channel</td>
+              <td>yes</td>
+              <td class="svelte-gq0h2h">no</td>
+            </tr>
+            <tr>
+              <td>same subject, same channel, different tenant</td>
+              <td>yes</td>
+              <td class="svelte-gq0h2h">no</td>
+            </tr>
+            <tr>
+              <td>different subject, same way in</td>
+              <td>no</td>
+              <td class="svelte-gq0h2h dup">yes</td>
+            </tr>
+            <tr>
+              <td>no tenant on file</td>
+              <td>yes</td>
+              <td class="svelte-gq0h2h">no</td>
+            </tr>
+            <!--]-->
+          </tbody>
+        </table>
+        <!---->
+        <h2>Consequences</h2>
+        <p>
+          Current triage points here rather than to the superseded records. This
+          changes the recorded provenance, not the cause counts or evidence
+          limits. Publishing and signing a review does not prove a production
+          fix, and closing course deliverables does not resolve the unexplained
+          timing reports.
+        </p>
+        <!--[0-->
+        <p class="stamp svelte-1280m42">
+          desk ref <b class="svelte-1280m42">DR-YEDG-VQA1</b>
+        </p>
+        <!--]--><!----><!---->
+      </main>
+      <footer class="svelte-e2jw2j">
+        Pages are written by people. Tables and charts are built from data at
+        render time.
+      </footer>
+    </div>
+    <!--]-->
+  </body>
+</html>

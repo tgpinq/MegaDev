@@ -4,7 +4,7 @@ title: '#4471 review: separate causes, not duplicate subjects'
 owner: tgpinq
 status: investigated
 reviewed: 2026-10-30
-signature: tgpinq
+signature: v1.eyJzdWIiOiIzODQ4IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzNzEwOTIsImV4cCI6MTc5MzQ1NzQ5Mn0.7o9NSSZNfZ6hOtUy3WzngiIKJtmpJ7gtbQ-gMSIihPI
 ---
 
 <script>
@@ -87,7 +87,7 @@ mean resolved.
   applying a broad change or announcing an impact count.
 </Callout>
 
-Use the [replacement decision](/kb/decisions/0002-dedupe-by-cause) and
+Use the [replacement decision](/kb/decisions/0003-cause-triage-provenance) and
 [current triage procedure](/kb/triage/dedupe) immediately for this KB's routing.
 Do not silently rewrite the accepted historical decision.
 

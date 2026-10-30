@@ -35,5 +35,5 @@ parser and hint defects. This KB export does not establish that either is fixed.
 
 - A large merged ticket is not evidence that every report has the same cause.
 - Receipt time and merge time describe different events; neither proves a fix.
-- Follow [decision 0002](/kb/decisions/0002-dedupe-by-cause) and the
+- Follow [decision 0003](/kb/decisions/0003-cause-triage-provenance) and the
   [current triage procedure](/kb/triage/dedupe), preserving anomalies and report IDs.

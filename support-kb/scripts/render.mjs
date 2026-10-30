@@ -8,7 +8,11 @@ import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const source = join(root, "src");
-const pages = ["incidents/4471-review", "decisions/0002-dedupe-by-cause"];
+const pages = [
+  "incidents/4471-review",
+  "decisions/0002-dedupe-by-cause",
+  "decisions/0003-cause-triage-provenance",
+];
 
 for (const page of pages) {
   const styles = new Map();

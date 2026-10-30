@@ -1,0 +1,48 @@
+---
+layout: runbook
+title: '0003: confirm cause-based triage with course provenance'
+owner: tgpinq
+status: accepted
+reviewed: 2026-10-30
+signature: v1.eyJzdWIiOiIzODQ4IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzNzEwOTIsImV4cCI6MTc5MzQ1NzQ5Mn0.7o9NSSZNfZ6hOtUy3WzngiIKJtmpJ7gtbQ-gMSIihPI
+---
+
+<script>
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+**Supersedes:** [0002: duplicate reports share an evidenced cause](/kb/decisions/0002-dedupe-by-cause).
+Accepted decisions 0001 and 0002 remain unchanged as history.
+
+## Context
+
+Decision 0002 correctly separated causes, but its signature was the author's
+GitHub handle. The course requires its issued ticket as the page signature.
+This replacement records that provenance without editing an accepted decision.
+The [incident review](/kb/incidents/4471-review) now uses the same issued
+signature; its render-time desk reference follows from that exact value.
+
+## Decision
+
+Retain the cause-based rule from decision 0002. Merge only when the evidence
+supports a shared cause and compatible affected product and path. Deduplicate
+report IDs, resolve tenant locale and form version, inspect the channel, and
+read the body for contradictions. Use `causeOf` and `sameCause` for the date
+cases, not subject matching, browser locale, or intake's guessed tags.
+
+Unknown tenants, unsupported cases, and timing anomalies stay visible for
+investigation rather than being forced into a cause. Preserve report IDs and
+ticket links when reclassifying. Continue routing supported cases while
+engineering investigates uncertainty.
+
+<DedupeExplorer />
+
+## Consequences
+
+Current triage points here rather than to the superseded records. This changes
+the recorded provenance, not the cause counts or evidence limits. Publishing
+and signing a review does not prove a production fix, and closing course
+deliverables does not resolve the unexplained timing reports.
+
+<RenderStamp {signature} />

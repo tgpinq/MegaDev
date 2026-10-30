@@ -40,8 +40,14 @@ Exported 2026-10-04 from the `support` repo, `apps/kb/` → `src/`.
 The signed [incident review](src/routes/kb/incidents/4471-review/+page.svx)
 separates the parser and booking-v3 date-hint defects, links their public
 engineering issues, and retains the unresolved timing evidence.
-[Decision 0002](src/routes/kb/decisions/0002-dedupe-by-cause/+page.svx) replaces the
-subject-only rule; the accepted decision 0001 is preserved unchanged.
+[Decision 0003](src/routes/kb/decisions/0003-cause-triage-provenance/+page.svx)
+confirms cause-based triage with the course-issued signature. Accepted decisions
+0001 and 0002 are preserved unchanged rather than edited.
+
+The current review and decision use the exact ticket issued by the course as
+their frontmatter `signature`; `owner` remains the author handle. The ticket is
+the course-designated public page signature, not a GitHub access token.
+`RenderStamp` derives the visible desk reference from it at render time.
 
 Counts are computed by the existing components from deduplicated report IDs and
 tenant metadata, not copied from intake tags. The export is a snapshot, not a
@@ -55,7 +61,7 @@ node --test support-kb/tests/kb.test.mjs
 
 The course also requires the page as the desk will see it. The
 [rendered review](rendered/kb/incidents/4471-review/index.html) and
-[rendered decision](rendered/kb/decisions/0002-dedupe-by-cause/index.html) are
+[rendered decision](rendered/kb/decisions/0003-cause-triage-provenance/index.html) are
 generated from the actual MDsveX pages, Svelte components, data, and runbook
 layout, not manually recreated tables.
 

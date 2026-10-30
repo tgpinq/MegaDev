@@ -14,6 +14,14 @@ import { deskRef } from "../src/lib/kb/desk-ref.ts";
 
 const source = new URL("../src/", import.meta.url);
 const read = (path) => readFileSync(new URL(path, source), "utf8");
+const signatureOf = (page) => {
+  const signature = read(page).match(/^signature: (\S+)$/m)?.[1];
+  assert.ok(signature, `${page} must have a signature`);
+  return signature;
+};
+const courseSignature = signatureOf(
+  "routes/kb/incidents/4471-review/+page.svx",
+);
 const rows = JSON.parse(read("lib/data/reports-4471.json"));
 const notes = JSON.parse(read("lib/data/desk-notes.json"));
 const tenants = new Map(
@@ -96,9 +104,15 @@ test("receipt chronology is not the bulk merge chronology", () => {
 });
 
 test("new pages are signed, stamped, discoverable, and resolve their imports", () => {
+  assert.match(courseSignature, /^v1\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/);
+  const ticket = JSON.parse(
+    Buffer.from(courseSignature.split(".")[1], "base64url").toString("utf8"),
+  );
+  assert.equal(ticket.aud, "challenge:what-it-shows");
+  assert.ok(Number.isInteger(ticket.exp));
   for (const path of [
     "routes/kb/incidents/4471-review/+page.svx",
-    "routes/kb/decisions/0002-dedupe-by-cause/+page.svx",
+    "routes/kb/decisions/0003-cause-triage-provenance/+page.svx",
   ]) {
     const page = read(path);
     const frontmatter = page.match(/^---\r?\n([\s\S]*?)\r?\n---/);
@@ -106,7 +120,7 @@ test("new pages are signed, stamped, discoverable, and resolve their imports", (
     for (const key of ["layout", "title", "owner", "status", "reviewed"]) {
       assert.match(frontmatter[1], new RegExp(`^${key}: .+`, "m"));
     }
-    assert.match(frontmatter[1], /^signature: tgpinq$/m);
+    assert.equal(signatureOf(path), courseSignature);
     assert.ok(page.trimEnd().endsWith("<RenderStamp {signature} />"));
     assert.match(
       path,
@@ -118,10 +132,11 @@ test("new pages are signed, stamped, discoverable, and resolve their imports", (
     }
   }
   assert.match(
-    deskRef("tgpinq"),
+    deskRef(courseSignature),
     /^DR-[0-9A-HJKMNP-TV-Z]{4}-[0-9A-HJKMNP-TV-Z]{4}$/,
   );
-  assert.equal(deskRef(" tgpinq "), deskRef("tgpinq"));
+  assert.equal(deskRef(` ${courseSignature} `), deskRef(courseSignature));
+  assert.notEqual(deskRef(courseSignature), deskRef("tgpinq"));
 });
 
 test("the review uses live components and links both issues and new guidance", () => {
@@ -135,7 +150,7 @@ test("the review uses live components and links both issues and new guidance", (
   }
   for (const id of notes.oneDayMove) assert.ok(review.includes(id));
   const triage = read("routes/kb/triage/dedupe/+page.svx");
-  assert.ok(triage.includes("/kb/decisions/0002-dedupe-by-cause"));
+  assert.ok(triage.includes("/kb/decisions/0003-cause-triage-provenance"));
   assert.ok(!triage.includes("Merge. Splitting a ticket later is cheaper"));
   const original = read("routes/kb/incidents/4471/+page.svx");
   assert.match(original, /^status: split$/m);
@@ -146,6 +161,7 @@ test("rendered pages include real component output and the derived desk stamp", 
   for (const page of [
     "incidents/4471-review",
     "decisions/0002-dedupe-by-cause",
+    "decisions/0003-cause-triage-provenance",
   ]) {
     const html = readFileSync(
       new URL(`../rendered/kb/${page}/index.html`, import.meta.url),
@@ -153,7 +169,8 @@ test("rendered pages include real component output and the derived desk stamp", 
     );
     assert.ok(html.startsWith("<!doctype html>"));
     assert.ok(html.includes("<style>"));
-    assert.ok(html.includes(deskRef("tgpinq")));
+    const signature = signatureOf(`routes/kb/${page}/+page.svx`);
+    assert.ok(html.includes(deskRef(signature)));
     assert.ok(!html.includes("this page isn't signed"));
     assert.ok(!html.includes("<RenderStamp"));
     if (page === "incidents/4471-review") {

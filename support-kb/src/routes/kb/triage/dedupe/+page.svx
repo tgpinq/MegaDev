@@ -19,8 +19,10 @@ similar words. Do not collapse them merely to shorten the queue.
 
 A report is a duplicate only when its evidence supports the same cause and
 compatible product and affected path, following
-[decision 0002](/kb/decisions/0002-dedupe-by-cause). This replaces the subject-only
-rule in the unchanged historical [decision 0001](/kb/decisions/0001-dedupe-by-subject).
+[decision 0003](/kb/decisions/0003-cause-triage-provenance). This confirms
+cause-based triage with the course-issued signature, preserving accepted
+decisions 0001 and 0002 as history. It replaces the subject-only rule in
+[decision 0001](/kb/decisions/0001-dedupe-by-subject).
 
 1. Retain the report ID, body, tenant, channel, and receipt time. Deduplicate
    overlapping export rows by ID.
