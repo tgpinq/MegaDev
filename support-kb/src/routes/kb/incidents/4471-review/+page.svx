@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 review: separate causes, not duplicate subjects'
 owner: tgpinq
-status: investigated
+status: closed
 reviewed: 2026-10-30
 signature: v1.eyJzdWIiOiIzODQ4IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzNzEwOTIsImV4cCI6MTc5MzQ1NzQ5Mn0.7o9NSSZNfZ6hOtUy3WzngiIKJtmpJ7gtbQ-gMSIihPI
 ---
@@ -19,24 +19,42 @@ ticket. Its "one issue, one fix queued" conclusion is not supported by the expor
 The table below computes the counts from unique report IDs, tenant locales, form
 versions, and channels. It does not trust intake's guessed tags.
 
-This review uses the export dated 2026-10-04. The review date is not a claim that we
-queried the live desk or verified a production fix.
+The report counts use the export dated 2026-10-04. The engineering outcomes below
+come from the later desk update on the signed-in S01E03 challenge page, inspected
+on 2026-10-30. These are separate sources; the export itself was not changed.
+We have not independently tested the production application.
 
-## What the evidence supports
+## Engineering outcome: closed 5 October
+
+The desk's engineering update says:
+
+- **Parser: fixed** — `fix(dates): parse dd/mm for eu locales`.
+  [Issue 1](https://github.com/tgpinq/MegaDev/issues/1) is closed as
+  **completed** because engineering reports a parser fix.
+- **Hint: won't fix** — booking-v3 form retired.
+  [Issue 2](https://github.com/tgpinq/MegaDev/issues/2) is closed as
+  **not planned** because the affected form was retired, not patched.
+
+The update reports #4471 closed on 5 October. Closing the parent does not mean
+every child had the same outcome. The earlier comments that closed both public
+issues merely as finished course work were insufficient; the engineering
+outcomes above supersede those comments.
+
+## What the exported evidence supports
 
 <CauseTable ticket={4471} />
 
-- **Parser:** the shared parser reads month first for day-first tenants.
+- **Parser, in the export:** the shared parser read month first for day-first tenants.
   [Engineering issue](https://github.com/tgpinq/MegaDev/issues/1).
-- **Hint:** booking-v3 prints `MM/DD/YYYY`, but the form reads input in the
+- **Hint, in the export:** booking-v3 printed `MM/DD/YYYY`, but the form read input in the
   day-first tenant's order. People can follow the instruction and still book
   the wrong date.
   [Separate engineering issue](https://github.com/tgpinq/MegaDev/issues/2).
 
-The issues record snapshot counts, customer evidence, reproduction steps for
-engineering to verify, proposed changes, and acceptance criteria. The production
-booking application is not in this export; these are not locally reproduced
-production fixes.
+The issues retain snapshot counts, customer evidence, original reproduction
+steps, proposed changes, and acceptance criteria, followed by the engineering
+outcome. The production booking application is not in this export; these are
+not locally reproduced production fixes.
 
 ### How to classify a report
 
@@ -96,15 +114,17 @@ Do not silently rewrite the accepted historical decision.
 - Link the parser and hint issues to the old incident. Reclassify existing
   reports with an audit trail; never delete reports or count a duplicated export
   row as another customer report.
-- Have the support lead arrange an engineering owner, priority, and mitigation
-  for each cause. Until verified, record these as unassigned, not "queued" facts.
-- Verify the affected booking paths and offer only a product-owner-approved
-  workaround. Do not change production, resend invitations, or bulk-move the
-  live desk's tickets from this export.
+- For any new or unexplained case, have the support lead arrange an engineering
+  owner, priority, and mitigation. Do not overwrite the documented fixed and
+  retired outcomes with assumptions about a new report.
+- Verify new reports against the affected product, release, and booking path,
+  and offer only a product-owner-approved workaround. Do not change production,
+  resend invitations, or bulk-move live tickets from this export.
 - Check new evidence against both issues. Preserve anomalies separately for
   investigation and revise the model if engineering establishes another cause.
-- Close a cause only after its product fix, regression tests, customer-case
-  verification, and rollout are documented. A documentation correction is not
-  a production fix.
+- Record each cause's actual disposition. A reported fix is completed; a
+  retired form marked "won't fix" is not planned. Neither a parent closure nor
+  a documentation correction proves that every cause was fixed. Retain the
+  source of the outcome and distinguish it from independent verification.
 
 <RenderStamp {signature} />

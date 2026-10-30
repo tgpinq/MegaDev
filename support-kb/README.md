@@ -53,6 +53,12 @@ Counts are computed by the existing components from deduplicated report IDs and
 tenant metadata, not copied from intake tags. The export is a snapshot, not a
 live ticket feed or a verified production fix.
 
+The later engineering update on the S01E03 challenge page reports #4471 closed
+on 5 October: parser fixed (`fix(dates): parse dd/mm for eu locales`), hint
+won't fix because booking-v3 was retired. The review records these separately:
+parser issue completed, hint issue not planned. The original export counts
+remain unchanged; the update is not an independently executed production test.
+
 Run the focused checks from the repository root with Node.js 24 or newer:
 
 ```powershell

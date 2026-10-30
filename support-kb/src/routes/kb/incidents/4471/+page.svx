@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · dates parse mm/dd in eu locales'
 owner: support desk
-status: split
+status: closed
 reviewed: 2026-10-30
 ---
 
@@ -20,8 +20,22 @@ classification from unique report IDs and tenant metadata.
 <Callout>
 The old "one issue, one fix queued" conclusion is superseded by the
 [signed review](/kb/incidents/4471-review). Separate engineering issues track the
-parser and hint defects. This KB export does not establish that either is fixed.
+parser and hint defects. The export does not establish their resolution; the
+later engineering update does.
 </Callout>
+
+## Engineering update
+
+The signed-in S01E03 challenge page reports #4471 closed on 5 October:
+
+- **Parser: fixed** — `fix(dates): parse dd/mm for eu locales`.
+  The parser issue closes as completed.
+- **Hint: won't fix** — booking-v3 form retired.
+  The hint issue closes as not planned, not as a completed fix.
+
+See the [signed review](/kb/incidents/4471-review) for the source, separate
+issue links, and verification limits. The table below remains the original
+export snapshot, not a live count.
 
 ## What was merged
 

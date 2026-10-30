@@ -190,7 +190,7 @@
         </h1>
         <p class="meta svelte-e2jw2j">
           <span>owner <b>tgpinq</b></span>
-          <span class="status investigated svelte-e2jw2j">investigated</span>
+          <span class="status closed svelte-e2jw2j">closed</span>
           <span class="svelte-e2jw2j">reviewed 2026-10-30 · 0 days ago</span>
         </p>
       </header>
@@ -204,10 +204,40 @@
           versions, and channels. It does not trust intake’s guessed tags.
         </p>
         <p>
-          This review uses the export dated 2026-10-04. The review date is not a
-          claim that we queried the live desk or verified a production fix.
+          The report counts use the export dated 2026-10-04. The engineering
+          outcomes below come from the later desk update on the signed-in S01E03
+          challenge page, inspected on 2026-10-30. These are separate sources;
+          the export itself was not changed. We have not independently tested
+          the production application.
         </p>
-        <h2>What the evidence supports</h2>
+        <h2>Engineering outcome: closed 5 October</h2>
+        <p>The desk’s engineering update says:</p>
+        <ul>
+          <li>
+            <strong>Parser: fixed</strong> —
+            <code>fix(dates): parse dd/mm for eu locales</code>.
+            <a href="https://github.com/tgpinq/MegaDev/issues/1" rel="nofollow"
+              >Issue 1</a
+            >
+            is closed as <strong>completed</strong> because engineering reports
+            a parser fix.
+          </li>
+          <li>
+            <strong>Hint: won’t fix</strong> — booking-v3 form retired.
+            <a href="https://github.com/tgpinq/MegaDev/issues/2" rel="nofollow"
+              >Issue 2</a
+            >
+            is closed as <strong>not planned</strong> because the affected form
+            was retired, not patched.
+          </li>
+        </ul>
+        <p>
+          The update reports #4471 closed on 5 October. Closing the parent does
+          not mean every child had the same outcome. The earlier comments that
+          closed both public issues merely as finished course work were
+          insufficient; the engineering outcomes above supersede those comments.
+        </p>
+        <h2>What the exported evidence supports</h2>
         <p class="sum svelte-12oyimm">
           <strong>412</strong> reports merged into #4471 ·
           <strong>2</strong> causes
@@ -254,26 +284,28 @@
         <!--]--><!--[-1--><!--]--><!--]--><!---->
         <ul>
           <li>
-            <strong>Parser:</strong> the shared parser reads month first for
-            day-first tenants.
+            <strong>Parser, in the export:</strong> the shared parser read month
+            first for day-first tenants.
             <a href="https://github.com/tgpinq/MegaDev/issues/1" rel="nofollow"
               >Engineering issue</a
             >.
           </li>
           <li>
-            <strong>Hint:</strong> booking-v3 prints <code>MM/DD/YYYY</code>,
-            but the form reads input in the day-first tenant’s order. People can
-            follow the instruction and still book the wrong date.
+            <strong>Hint, in the export:</strong> booking-v3 printed
+            <code>MM/DD/YYYY</code>, but the form read input in the day-first
+            tenant’s order. People can follow the instruction and still book the
+            wrong date.
             <a href="https://github.com/tgpinq/MegaDev/issues/2" rel="nofollow"
               >Separate engineering issue</a
             >.
           </li>
         </ul>
         <p>
-          The issues record snapshot counts, customer evidence, reproduction
-          steps for engineering to verify, proposed changes, and acceptance
-          criteria. The production booking application is not in this export;
-          these are not locally reproduced production fixes.
+          The issues retain snapshot counts, customer evidence, original
+          reproduction steps, proposed changes, and acceptance criteria,
+          followed by the engineering outcome. The production booking
+          application is not in this export; these are not locally reproduced
+          production fixes.
         </p>
         <h3>How to classify a report</h3>
         <p>
@@ -789,14 +821,16 @@
             a duplicated export row as another customer report.
           </li>
           <li>
-            Have the support lead arrange an engineering owner, priority, and
-            mitigation for each cause. Until verified, record these as
-            unassigned, not “queued” facts.
+            For any new or unexplained case, have the support lead arrange an
+            engineering owner, priority, and mitigation. Do not overwrite the
+            documented fixed and retired outcomes with assumptions about a new
+            report.
           </li>
           <li>
-            Verify the affected booking paths and offer only a
-            product-owner-approved workaround. Do not change production, resend
-            invitations, or bulk-move the live desk’s tickets from this export.
+            Verify new reports against the affected product, release, and
+            booking path, and offer only a product-owner-approved workaround. Do
+            not change production, resend invitations, or bulk-move live tickets
+            from this export.
           </li>
           <li>
             Check new evidence against both issues. Preserve anomalies
@@ -804,9 +838,11 @@
             establishes another cause.
           </li>
           <li>
-            Close a cause only after its product fix, regression tests,
-            customer-case verification, and rollout are documented. A
-            documentation correction is not a production fix.
+            Record each cause’s actual disposition. A reported fix is completed;
+            a retired form marked “won’t fix” is not planned. Neither a parent
+            closure nor a documentation correction proves that every cause was
+            fixed. Retain the source of the outcome and distinguish it from
+            independent verification.
           </li>
         </ul>
         <!--[0-->

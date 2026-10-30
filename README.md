@@ -10,3 +10,7 @@ Created for MegaDev challenges
 - [Rendered incident review](support-kb/rendered/kb/incidents/4471-review/index.html)
 - [Replacement deduplication decision](support-kb/src/routes/kb/decisions/0003-cause-triage-provenance/+page.svx)
 - [KB conventions, rendering, and tests](support-kb/README.md)
+
+The desk's later engineering update reports the parser fixed and booking-v3
+retired without a hint fix. The issue close reasons are completed and not
+planned, respectively. Counts above refer to the original export snapshot.

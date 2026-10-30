@@ -55,3 +55,11 @@ well-supported incoming reports while uncertain ones are investigated.
 Confirm product scope before any broad remediation: this desk also serves
 `sched-prod` and other products. Do not bulk-change live tickets or customer
 invitations on the strength of an exported snapshot.
+
+## When engineering closes the incident
+
+Read each cause's outcome rather than copying the parent's status. In #4471's
+later engineering update, the parser was fixed, while booking-v3 was retired
+and its hint marked "won't fix". Close the former as completed and the latter
+as not planned. Preserve the update's source and the original report counts;
+do not describe retirement as a shipped hint fix.

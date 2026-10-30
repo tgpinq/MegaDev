@@ -153,8 +153,22 @@ test("the review uses live components and links both issues and new guidance", (
   assert.ok(triage.includes("/kb/decisions/0003-cause-triage-provenance"));
   assert.ok(!triage.includes("Merge. Splitting a ticket later is cheaper"));
   const original = read("routes/kb/incidents/4471/+page.svx");
-  assert.match(original, /^status: split$/m);
+  assert.match(original, /^status: closed$/m);
   assert.ok(original.includes("/kb/incidents/4471-review"));
+});
+
+test("the later engineering update distinguishes a fix from a retired form", () => {
+  const review = read("routes/kb/incidents/4471-review/+page.svx");
+  assert.match(review, /^status: closed$/m);
+  assert.ok(review.includes("fix(dates): parse dd/mm for eu locales"));
+  assert.ok(review.includes("Hint: won't fix"));
+  assert.ok(review.includes("booking-v3 form retired"));
+  assert.ok(review.includes("**completed**"));
+  assert.ok(review.includes("**not planned**"));
+  assert.ok(review.includes("5 October"));
+  assert.ok(
+    review.includes("The report counts use the export dated 2026-10-04"),
+  );
 });
 
 test("rendered pages include real component output and the derived desk stamp", () => {
@@ -179,6 +193,9 @@ test("rendered pages include real component output and the derived desk stamp", 
       assert.match(text, /parser 379/);
       assert.match(text, /hint 33/);
       assert.match(text, /5 reports read as a one-day move/);
+      assert.match(text, /Parser: fixed/);
+      assert.match(text, /Hint: won['\u2019]t fix/);
+      assert.match(text, /not planned/);
       assert.ok(html.includes("<svg"));
     }
   }
